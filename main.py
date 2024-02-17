@@ -4,10 +4,13 @@ import converter
 from pydantic import BaseModel
 from config import Settings
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app = FastAPI()
-
-settings = Settings()
+if os.environ.get("VERCEL"):
+    settings = Settings(_env_file=None)
+else:
+    settings = Settings()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[settings.allowed_origin],
