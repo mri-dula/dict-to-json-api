@@ -6,13 +6,12 @@ from exceptions import InvalidDictError
 def _convert_dict(dikt: ast.Dict, converted_dict={}) -> dict:
     for i, key in enumerate(dikt.keys):
         val = dikt.values[i]
-        match type(val):
-            case ast.Constant:
-                converted_dict[key.value] = val.value
-            case ast.Dict:
-                converted_dict[key.value] = _convert_dict(dikt=val, converted_dict={})
-            case _:
-                converted_dict[key.value] = ast.unparse(val)
+        if isinstance(val, ast.Constant):
+            converted_dict[key.value] = val.value
+        elif isinstance(val, ast.Dict):
+            converted_dict[key.value] = _convert_dict(dikt=val, converted_dict={})
+        else:
+            converted_dict[key.value] = ast.unparse(val)
     return converted_dict
 
 

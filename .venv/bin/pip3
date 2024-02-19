@@ -1,4 +1,4 @@
-#!/Users/mridulaprabhu/work/dict-to-json/dict-to-json-api/.venv/bin/python3.12
+#!/Users/mridulaprabhu/work/dict-to-json/dict-to-json-api/.venv/bin/python3.9
 # -*- coding: utf-8 -*-
 import re
 import sys
